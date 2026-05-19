@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attilio Michele Simonetti — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #1A3A5C;
+    --blue:   #2A6EBB;
+    --blue-l: #5B9BD5;
+    --sky:    #CDE0F5;
+    --white:  #FFFFFF;
+    --off:    #F7F9FC;
+    --dark:   #1E1E2E;
+    --mid:    #4A5568;
+    --light:  #A0AEC0;
+    --border: #E2EBF5;
+    --tag-bg: #EBF4FF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 980px;
+    margin: 48px auto;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(26,58,92,.15), 0 4px 16px rgba(26,58,92,.08);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+    animation: fadeUp .6s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy);
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(91,155,213,.12);
+  }
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(91,155,213,.08);
+  }
+
+  .name-block { margin-bottom: 24px; position: relative; z-index: 1; }
+  .name-first { font-family: 'DM Sans', sans-serif; font-weight: 300; color: rgba(255,255,255,.75); font-size: 18px; letter-spacing: .05em; }
+  .name-last  { font-family: 'DM Serif Display', serif; color: var(--white); font-size: 36px; line-height: 1.1; margin-bottom: 8px; }
+  .name-sub   { color: var(--blue-l); font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; padding-top: 10px; border-top: 2px solid rgba(91,155,213,.35); }
+
+  .s-section { margin-bottom: 20px; position: relative; z-index: 1; }
+  .s-label {
+    font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--blue-l); padding-bottom: 6px; border-bottom: 1px solid rgba(91,155,213,.3);
+    margin-bottom: 10px;
+  }
+  .s-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .s-list li { color: var(--sky); font-size: 13px; display: flex; align-items: flex-start; gap: 6px; }
+  .s-list li::before { content: '▸'; color: var(--blue-l); flex-shrink: 0; margin-top: 1px; }
+  .s-list li em { color: rgba(205,224,245,.6); font-size: 11px; font-style: italic; }
+
+  .s-tag-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+  .s-tag {
+    background: rgba(91,155,213,.18); color: var(--sky);
+    font-size: 11.5px; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px;
+    border: 1px solid rgba(91,155,213,.25);
+    transition: background .2s, color .2s;
+    cursor: default;
+  }
+  .s-tag:hover { background: rgba(91,155,213,.35); color: var(--white); }
+
+  /* ── MAIN ── */
+  .main { padding: 40px 44px; }
+
+  .target-bar {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .target-pill {
+    background: var(--tag-bg); color: var(--blue);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 14px; border-radius: 20px;
+    border: 1.5px solid rgba(42,110,187,.2);
+    letter-spacing: .02em;
+    transition: background .2s, border-color .2s;
+    cursor: default;
+  }
+  .target-pill:hover { background: #D6EBFF; border-color: var(--blue); }
+
+  .section { margin-bottom: 26px; animation: fadeUp .6s .15s ease both; }
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--navy); padding-bottom: 6px; margin-bottom: 14px;
+    border-bottom: 2.5px solid var(--navy);
+  }
+
+  /* Profilo */
+  .profile-text { color: var(--mid); font-size: 13.5px; line-height: 1.7; }
+  .profile-text strong { color: var(--dark); font-weight: 600; }
+
+  /* Formazione */
+  .edu-item { margin-bottom: 12px; }
+  .edu-title { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .edu-meta  { font-size: 12.5px; color: var(--light); margin-top: 1px; }
+  .edu-thesis { font-size: 12px; color: var(--mid); font-style: italic; margin-top: 2px; }
+
+  /* Esperienze */
+  .exp-item { margin-bottom: 14px; }
+  .exp-header { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
+  .exp-company { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .exp-sep { color: var(--border); }
+  .exp-role { font-size: 12.5px; font-style: italic; color: var(--mid); }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 3px; padding-left: 2px; }
+  .exp-bullets li { font-size: 13px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+  .exp-bullets li::before { content: '•'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+
+  /* Hard Skills */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .skill-item { font-size: 13px; color: var(--mid); display: flex; align-items: center; gap: 8px; }
+  .skill-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+  /* Progetti */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .project-card {
+    border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+    cursor: default;
+  }
+  .project-card:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(42,110,187,.12); transform: translateY(-2px); }
+  .project-name { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .project-tag  { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--blue); background: var(--tag-bg); padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+  .project-desc { font-size: 12px; color: var(--mid); line-height: 1.55; }
+
+  /* Metodo */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .step-card { background: linear-gradient(135deg, var(--tag-bg), #EBF4FF); border-radius: 10px; padding: 12px 10px; text-align: center; border: 1px solid var(--border); }
+  .step-num  { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--blue); line-height: 1; margin-bottom: 4px; }
+  .step-verb { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+  .step-desc { font-size: 11px; color: var(--mid); line-height: 1.4; }
+
+  /* Extras */
+  .extras-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .extras-list li { font-size: 12.5px; color: var(--mid); display: flex; gap: 8px; align-items: flex-start; }
+  .extras-list li::before { content: '▸'; color: var(--blue-l); flex-shrink: 0; }
+
+  /* Footer */
+  .privacy { font-size: 11px; color: var(--light); font-style: italic; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border); }
+
+  /* Links */
+  a { color: var(--blue-l); text-decoration: none; }
+  a:hover { color: var(--white); text-decoration: underline; }
+
+  /* Print */
+  @media print {
+    body { background: white; }
+    .page { margin: 0; border-radius: 0; box-shadow: none; max-width: none; width: 100%; min-height: auto; }
+    .project-card:hover, .target-pill:hover, .s-tag:hover { transform: none; box-shadow: none; }
+  }
+
+  @media (max-width: 720px) {
+    .page { grid-template-columns: 1fr; margin: 0; border-radius: 0; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2,1fr); }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="name-block">
+      <div class="name-first">Attilio Michele</div>
+      <div class="name-last">Simonetti</div>
+      <div class="name-sub">Ing. Gestionale &nbsp;│&nbsp; Innovazione</div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-label">Contatti</div>
+      <ul class="s-list">
+        <li>Presicce (LE), Italia</li>
+        <li><a href="tel:+393274389388">+39 327 438 9388</a></li>
+        <li><a href="mailto:attilio.s0106@gmail.com">attilio.s0106@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/attilio-michele-simonetti-153a33211" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <div class="s-section">
+      <div class="s-label">Soft Skills</div>
+      <div class="s-tag-grid">
+        <span class="s-tag">Pensiero analitico</span>
+        <span class="s-tag">Problem solving</span>
+        <span class="s-tag">Sintesi</span>
+        <span class="s-tag">Comunicazione</span>
+        <span class="s-tag">Teamwork</span>
+        <span class="s-tag">Adattabilità</span>
+        <span class="s-tag">Risultati</span>
+        <span class="s-tag">Proattività</span>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-label">Strumenti</div>
+      <ul class="s-list">
+        <li>Excel <em>(intermedio)</em></li>
+        <li>PowerPoint / Word</li>
+        <li>Python <em>(base)</em></li>
+        <li>Canva <em>(base)</em></li>
+        <li>CMS, DMS, CRM, ERP <em>(base)</em></li>
+      </ul>
+    </div>
+
+    <div class="s-section">
+      <div class="s-label">Lingue</div>
+      <ul class="s-list">
+        <li>Italiano <em>(madrelingua)</em></li>
+        <li>Inglese B2 <em>(IELTS curricolare)</em></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+
+    <div class="target-bar">
+      <span class="target-pill">Project Manager Jr</span>
+      <span class="target-pill">Operations</span>
+      <span class="target-pill">Business Analyst</span>
+      <span class="target-pill">Consulenza strategica</span>
+      <span class="target-pill">Market Analysis</span>
+    </div>
+
+    <!-- Profilo -->
+    <div class="section">
+      <div class="section-title">Profilo</div>
+      <p class="profile-text">
+        <strong>Studente magistrale in Ingegneria Gestionale al Politecnico di Torino</strong>, con focus su innovazione, strategia e sviluppo prodotto. Cerco opportunità junior in contesti industriali, energetici, moda/sport o consulenza, dove unire analisi quantitativa, visione gestionale e capacità di sintesi. Porto esperienza su market research, business modelling, documentazione tecnica, pianificazione e analisi dei flussi di risorse.
+      </p>
+    </div>
+
+    <!-- Formazione -->
+    <div class="section">
+      <div class="section-title">Formazione</div>
+      <div class="edu-item">
+        <div class="edu-title">Laurea Magistrale – Ingegneria Gestionale, percorso Innovazione (LM-31)</div>
+        <div class="edu-meta">Politecnico di Torino &nbsp;│&nbsp; da settembre 2024 <em>(in corso)</em></div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-title">Laurea Triennale – Ingegneria Gestionale (L-9)</div>
+        <div class="edu-meta">Politecnico di Torino &nbsp;│&nbsp; luglio 2024</div>
+        <div class="edu-thesis">Tesi: «Cor-Ten & l'Acciaio al Carbonio: il vero passo in avanti per le energie rinnovabili»</div>
+      </div>
+    </div>
+
+    <!-- Esperienze -->
+    <div class="section">
+      <div class="section-title">Esperienze</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">Sunspyre S.r.l.</span>
+          <span class="exp-sep">│</span>
+          <span class="exp-role">Tirocinio curricolare – Innovazione e sviluppo commerciale</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Affiancamento in percorso di innovazione e diversificazione aziendale, con supporto diretto all'area commerciale.</li>
+          <li>Analisi di opportunità di sviluppo e posizionamento strategico; raccolta e sintesi di informazioni per valutazioni commerciali.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">Colliery Green S.r.l.</span>
+          <span class="exp-sep">│</span>
+          <span class="exp-role">Tirocinio extracurricolare – Energia e fotovoltaico</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Documentazione tecnica su materiali per strutture in acciaio nel settore fotovoltaico; analisi flussi di risorse.</li>
+          <li>Revisione di proposte tecnico-commerciali con focus su struttura, contenuti e coerenza tecnica.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-company">Esperienze operative</span>
+          <span class="exp-sep">│</span>
+          <span class="exp-role">Attività familiari e stewarding eventi</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Supporto alla gestione di un albergo 3 stelle e attività agricole; gestione clienti e problem solving operativo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hard Skills -->
+    <div class="section">
+      <div class="section-title">Hard Skills</div>
+      <div class="skills-grid">
+        <div class="skill-item">Analisi strategica e di mercato</div>
+        <div class="skill-item">Business modelling</div>
+        <div class="skill-item">Gestione dell'innovazione</div>
+        <div class="skill-item">Sviluppo prodotto</div>
+        <div class="skill-item">Pianificazione tecnico-commerciale</div>
+        <div class="skill-item">Analisi flussi di risorse</div>
+      </div>
+    </div>
+
+    <!-- Progetti -->
+    <div class="section">
+      <div class="section-title">Progetti Selezionati</div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-tag">BUSINESS MODEL</div>
+          <div class="project-name">Deplotic – Startup Consulting</div>
+          <div class="project-desc">Ricerca di mercato, modello di business e pitch finale davanti a investitori (incubatore PoliTo).</div>
+        </div>
+        <div class="project-card">
+          <div class="project-tag">PROJECT MANAGEMENT</div>
+          <div class="project-name">Project Work Internazionale</div>
+          <div class="project-desc">Proposta tecnico-commerciale: definizione tecnica, planning, rischi, cash flow, prezzo e contratto.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-tag">INNOVATION</div>
+          <div class="project-name">Scarpe Sportive – Innovazione Prodotto</div>
+          <div class="project-desc">Analisi di prodotto, paradigmi tecnologici, sostenibilità, performance e posizionamento competitivo.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-tag">FINANCE</div>
+          <div class="project-name">Analisi Economico-Finanziaria</div>
+          <div class="project-desc">Valutazione della performance d'impresa tramite bilancio, indicatori e driver gestionali.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metodo -->
+    <div class="section">
+      <div class="section-title">Metodo di Lavoro</div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-verb">Analizzo</div>
+          <div class="step-desc">dati, mercato e contesto</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-verb">Modello</div>
+          <div class="step-desc">business, risorse e scenari</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-verb">Pianifico</div>
+          <div class="step-desc">attività, rischi e flussi</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-verb">Presento</div>
+          <div class="step-desc">output chiari per decidere</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extras -->
+    <div class="section">
+      <div class="section-title">Altri Elementi Rilevanti</div>
+      <ul class="extras-list">
+        <li>Business Game di Strategia e Organizzazione: simulazione software di strategie alternative e valutazione quantitativa.</li>
+        <li>Laboratorio Sistemi Informativi Aziendali: analisi e progettazione di sistemi CMS/DMS, CRM, ERP.</li>
+        <li>Approfondimenti extracurricolari su mercato fotovoltaico e sistemi di accumulo BESS.</li>
+        <li>Certificazioni: corso sicurezza sul lavoro; IELTS curricolare B2.</li>
+      </ul>
+    </div>
+
+    <div class="privacy">Autorizzo il trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR).</div>
+  </main>
+</div>
+</body>
+</html>
